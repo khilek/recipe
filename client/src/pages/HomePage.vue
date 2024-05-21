@@ -48,7 +48,7 @@ onMounted(() => {
 
   <div class="container">
     <section class="row ">
-      <div class="col-3 align-self-center" role="button" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      <div class="col-3 align-self-center" role="button" data-bs-toggle="modal" data-bs-target="#recipeCardModal"
         v-for="recipe in recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe" />
         <!-- <button type="button" class="btn btn-primary">

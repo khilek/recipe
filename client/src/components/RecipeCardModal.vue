@@ -9,15 +9,15 @@
 
 
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="recipeCardModal" tabindex="-1" aria-labelledby="recipeCardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="recipeCardModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          //FIXME - REFERENCE ART TERMINAL FOR GETTING RECIPE IN MODALS
+          //FIXME REFERENCE ART TERMINAL FOR GETTING RECIPE IN MODALS
 
         </div>
         <div class="modal-footer">
