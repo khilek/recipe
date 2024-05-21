@@ -1,6 +1,15 @@
 <script setup>
+import { computed } from "vue";
+import { AppState } from "../AppState.js";
 
 
+const activeRecipe = computed(() => AppState.activeRecipe)
+
+
+// NO ON MOUNTED IN THE MODAL NEEDED
+// onMounted(() => {
+//   getRecipeById()
+// })
 </script>
 
 
@@ -11,13 +20,14 @@
   <!-- Modal -->
   <div class="modal fade" id="recipeCardModal" tabindex="-1" aria-labelledby="recipeCardModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" v-if="activeRecipe">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="recipeCardModalLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="recipeCardModalLabel">Recipe</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          //FIXME REFERENCE ART TERMINAL FOR GETTING RECIPE IN MODALS
+          <!-- FIXME REFERENCE ART TERMINAL FOR GETTING RECIPE IN MODALS -->
+          {{ activeRecipe }}
 
         </div>
         <div class="modal-footer">

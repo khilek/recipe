@@ -4,11 +4,12 @@ import { AppState } from "../AppState.js";
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { recipesService } from "../services/RecipesService.js";
+import { useRoute } from "vue-router";
 
-
+const route = useRoute()
 
 const recipes = computed(() => AppState.recipes)
-
+const activeRecipe = computed(() => AppState.activeRecipe)
 
 async function getRecipes() {
   try {
@@ -18,6 +19,7 @@ async function getRecipes() {
     logger.error(error)
   }
 }
+
 
 onMounted(() => {
   getRecipes()
@@ -48,8 +50,7 @@ onMounted(() => {
 
   <div class="container">
     <section class="row ">
-      <div class="col-3 align-self-center" role="button" data-bs-toggle="modal" data-bs-target="#recipeCardModal"
-        v-for="recipe in recipes" :key="recipe.id">
+      <div class="col-3 align-self-center" v-for="recipe in recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe" />
         <!-- <button type="button" class="btn btn-primary">
           Launch demo modal
