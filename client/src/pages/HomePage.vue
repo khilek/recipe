@@ -29,20 +29,22 @@ onMounted(() => {
 <template>
   <div class="container-fluid">
     <section class="row bg-success text-center p-5 fw-bold ">
-      <div class="col">
-        <h1>RECIPE</h1>
+      <div class="col d-flex justify-content-center">
+        <h1>RECIPE </h1>
+        <h2><i role="button" title="Create a Recipe!" data-bs-toggle="modal" data-bs-target="#recipeFormModal"
+            class="mdi mdi-plus-circle p-3"></i></h2>
       </div>
     </section>
   </div>
   <div class="container">
     <section class="row card flex-row  align-items-center">
-      <div role="button" class="col-4 d-flex justify-content-evenly selectable p-2">
+      <div role="button" class="col-4 col-md-4 d-flex justify-content-evenly selectable p-2">
         <h2>HOME</h2>
       </div>
-      <div role="button" class="col-4 d-flex justify-content-evenly selectable">
+      <div role="button" class="col-4 col-md-4  d-flex justify-content-evenly selectable">
         <h2>My Recipes</h2>
       </div>
-      <div role="button" class="col-4 d-flex justify-content-evenly selectable">
+      <div role="button" class="col-4 col-md-4  d-flex justify-content-evenly selectable">
         <h2>RECIPES</h2>
       </div>
     </section>
@@ -50,16 +52,16 @@ onMounted(() => {
 
   <div class="container">
     <section class="row ">
-      <div class="col-3 align-self-center" v-for="recipe in recipes" :key="recipe.id">
+      <div class="col-3 col-md-4 col-lg-3 align-self-center" v-for="recipe in recipes" :key="recipe.id">
         <RecipeCard :recipe="recipe" />
-        <!-- <button type="button" class="btn btn-primary">
-          Launch demo modal
-        </button> -->
+
       </div>
     </section>
   </div>
 
+
   <RecipeCardModal />
+  <RecipeFormModal />
 </template>
 
 <style scoped lang="scss">
@@ -87,27 +89,5 @@ onMounted(() => {
   display: block;
   object-fit: contain;
   object-position: cover;
-}
-
-
-
-.home {
-  display: grid;
-  height: 80vh;
-  place-content: center;
-  text-align: center;
-  user-select: none;
-
-  .home-card {
-    width: clamp(500px, 50vw, 100%);
-
-    >img {
-      height: 200px;
-      max-width: 200px;
-      width: 100%;
-      object-fit: contain;
-      object-position: center;
-    }
-  }
 }
 </style>

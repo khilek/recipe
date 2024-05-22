@@ -23,9 +23,11 @@ async function getRecipeById(recipeId) {
 
 
 <template>
+
+
   <div class=" card text-bg-dark mt-3">
     <img :src="recipe.img" class="recipe-img" alt="food image">
-    <div class="top-left bg-dark rounded-pill w-25 text-center text-light">{{ recipe.category }}</div>
+    <div class="top-left bg-dark rounded-pill w-75 text-center text-light">{{ recipe.category }}</div>
     <div class="card p-3">
       <h5 class="card-title text-center  " role="button" data-bs-toggle="modal" data-bs-target="#recipeCardModal"
         @click="getRecipeById(recipe.id)">
