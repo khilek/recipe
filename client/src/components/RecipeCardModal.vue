@@ -5,12 +5,12 @@ import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { recipesService } from "../services/RecipesService.js";
 import { Recipe } from "../models/Recipe.js";
-import { useRoute } from "vue-router";
 
-defineProps({ recipe: { type: Recipe, required: true } })
+
+// defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
 const account = computed(() => AppState.account)
-const route = useRoute()
+// const route = useRoute()
 
 async function eraseRecipe(recipeId) {
   try {
@@ -73,11 +73,11 @@ async function eraseRecipe(recipeId) {
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           <h2><i role="button" title="Update a Recipe!" data-bs-toggle="modal" data-bs-target="#UpdateRecipeForm"
               class="mdi mdi-plus-circle p-3"></i></h2>
-          <UpdateRecipeForm />
         </div>
       </div>
     </div>
   </div>
+  <UpdateRecipeForm />
 </template>
 
 
