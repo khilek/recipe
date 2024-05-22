@@ -1,10 +1,35 @@
 <script setup>
 import { computed } from "vue";
 import { AppState } from "../AppState.js";
+import Pop from "../utils/Pop.js";
+import { logger } from "../utils/Logger.js";
+import { recipesService } from "../services/RecipesService.js";
+import { Recipe } from "../models/Recipe.js";
+import { useRoute } from "vue-router";
 
-
+defineProps({ recipe: { type: Recipe, required: true } })
 const activeRecipe = computed(() => AppState.activeRecipe)
+const account = computed(() => AppState.account)
+const route = useRoute()
 
+async function eraseRecipe(recipeId) {
+  try {
+
+    const wantsToErase = await Pop.confirm('Are you sure you want to Erase?', 'There is no undoing this...', 'ERASE', "question")
+
+    if (!wantsToErase) return
+
+    logger.log('ERASING RECIPE', AppState.activeRecipe.id)
+
+    await recipesService.eraseRecipe(recipeId)
+
+  } catch (error) {
+    Pop.toast("Couldn't Erase Recipe")
+    logger.error(error)
+  }
+
+
+}
 
 // NO ON MOUNTED IN THE MODAL NEEDED
 // onMounted(() => {
@@ -40,15 +65,19 @@ const activeRecipe = computed(() => AppState.activeRecipe)
           </div>
         </div>
         <div class="modal-footer">
+          <div class="text-start w-100">
+            <button @click="eraseRecipe(AppState.activeRecipe.id)" class=" btn btn-outline-danger"
+              title="Full Send!">Erase</button>
+          </div>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
           <h2><i role="button" title="Update a Recipe!" data-bs-toggle="modal" data-bs-target="#UpdateRecipeForm"
               class="mdi mdi-plus-circle p-3"></i></h2>
+          <UpdateRecipeForm />
         </div>
       </div>
     </div>
   </div>
-  <UpdateRecipeForm />
 </template>
 
 

@@ -36,7 +36,6 @@ class RecipesService {
    * @param {{ title: string; instructions: string; img: string; category: string; }} recipeData
    */
   async updateRecipe(recipeId, recipeData) {
-    console.log(recipeId)
     const response = await api.put(`api/recipes/${recipeId}`, recipeData)
     logger.log("Updating Recipe", response.data)
     const recipeToUpdate = new Recipe(recipeId)
@@ -44,7 +43,17 @@ class RecipesService {
     return recipeToUpdate
   }
 
-
+  /**
+   * @param {string | string[]} recipeId
+   */
+  async eraseRecipe(recipeId) {
+    const response = await api.delete(`api/recipes/${recipeId}`)
+    logger.log('Erasing Recipe', response.data)
+    const recipes = AppState.recipes
+    const recipeToIndex = recipes.findIndex(recipe => recipe.id == recipeId)
+    if (recipeToIndex == -1) throw new Error("Couldn't find Index")
+    recipes.splice(recipeToIndex, 1)
+  }
 
 }
 
